@@ -52,7 +52,7 @@ const whisperCppOutput = await transcribe({
   model: "medium.en",
   whisperPath: to,
   whisperCppVersion: "1.5.5",
-  inputPath: "/path/to/audio123.wav",
+  inputPath: "/path/to/audio.wav",
   tokenLevelTimestamps: true,
 });
 
@@ -62,7 +62,7 @@ const { captions } = toCaptions({
 });
 
 // Write it to the public/ folder so it can be fetched from Remotion
-fs.writeFileSync("captions123.json", JSON.stringify(captions, null, 2));
+fs.writeFileSync("captions.json", JSON.stringify(captions, null, 2));
 ```
 
 Transcribe each clip individually and create multiple JSON files.
