@@ -32,11 +32,12 @@ import { getVideoDuration } from "./get-video-duration";
 
 const calculateMetadata: CalculateMetadataFunction<Props> = async ({
   props,
+  fps,
 }) => {
   const durationInSeconds = await getVideoDuration(props.videoSrc);
 
   return {
-    durationInFrames: Math.ceil(durationInSeconds * 30),
+    durationInFrames: Math.ceil(durationInSeconds * fps),
   };
 };
 ```
@@ -52,6 +53,7 @@ import { getVideoDimensions } from "./get-video-dimensions";
 
 const calculateMetadata: CalculateMetadataFunction<Props> = async ({
   props,
+  fps,
 }) => {
   const dimensions = await getVideoDimensions(props.videoSrc);
 
@@ -67,6 +69,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = async ({
 ```tsx
 const calculateMetadata: CalculateMetadataFunction<Props> = async ({
   props,
+  fps,
 }) => {
   const metadataPromises = props.videos.map((video) =>
     getVideoDuration(video.src),
@@ -79,7 +82,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = async ({
   );
 
   return {
-    durationInFrames: Math.ceil(totalDuration * 30),
+    durationInFrames: Math.ceil(totalDuration * fps),
   };
 };
 ```
@@ -91,44 +94,12 @@ Set the default output filename based on props:
 ```tsx
 const calculateMetadata: CalculateMetadataFunction<Props> = async ({
   props,
+  fps,
 }) => {
   return {
-    defaultOutName: `video-${props.id}.mp4`,
+    outName: props.filename,
   };
 };
 ```
 
-## Transforming props
-
-Fetch data or transform props before rendering:
-
-```tsx
-const calculateMetadata: CalculateMetadataFunction<Props> = async ({
-  props,
-  abortSignal,
-}) => {
-  const response = await fetch(props.dataUrl, { signal: abortSignal });
-  const data = await response.json();
-
-  return {
-    props: {
-      ...props,
-      fetchedData: data,
-    },
-  };
-};
-```
-
-The `abortSignal` cancels stale requests when props change in the Studio.
-
-## Return value
-
-All fields are optional. Returned values override the `<Composition>` props:
-
-- `durationInFrames`: Number of frames
-- `width`: Composition width in pixels
-- `height`: Composition height in pixels
-- `fps`: Frames per second
-- `props`: Transformed props passed to the component
-- `defaultOutName`: Default output filename
-- `defaultCodec`: Default codec for rendering
+See [calculate-metadata Remotion docs](https://www.remotion.dev/docs/calculate-metadata) for more information.
