@@ -110,10 +110,10 @@ This is useful for setting the composition duration to match the GIF:
 import { getGifDurationInSeconds } from "@remotion/gif";
 import { staticFile, CalculateMetadataFunction } from "remotion";
 
-const calculateMetadata: CalculateMetadataFunction = async () => {
+const calculateMetadata: CalculateMetadataFunction = async ({ fps }) => {
   const duration = await getGifDurationInSeconds(staticFile("animation.gif"));
   return {
-    durationInFrames: Math.ceil(duration * 30),
+    durationInFrames: Math.ceil(duration * fps),
   };
 };
 ```
