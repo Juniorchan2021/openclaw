@@ -109,13 +109,13 @@ import { MyComposition, MyCompositionProps } from "./MyComposition";
 
 const calculateMetadata: CalculateMetadataFunction<
   MyCompositionProps
-> = async ({ props, abortSignal }) => {
+> = async ({ props, fps, abortSignal }) => {
   const data = await fetch(`https://api.example.com/video/${props.videoId}`, {
     signal: abortSignal,
   }).then((res) => res.json());
 
   return {
-    durationInFrames: Math.ceil(data.duration * 30),
+    durationInFrames: Math.ceil(data.duration * fps),
     props: {
       ...props,
       videoUrl: data.url,
