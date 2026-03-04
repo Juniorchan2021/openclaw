@@ -15,6 +15,8 @@ Drive all animations from `useCurrentFrame()`.
 ## Bar Chart
 
 ```tsx
+import { useCurrentFrame, useVideoConfig, spring } from "remotion";
+
 const STAGGER_DELAY = 5;
 const frame = useCurrentFrame();
 const { fps } = useVideoConfig();
