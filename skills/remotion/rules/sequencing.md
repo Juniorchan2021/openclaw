@@ -8,16 +8,22 @@ metadata:
 Use `<Sequence>` to delay when an element appears in the timeline.
 
 ```tsx
-import { Sequence } from "remotion";
+import { Sequence, useVideoConfig } from "remotion";
 
-const {fps} = useVideoConfig();
+const MyVideo = () => {
+  const { fps } = useVideoConfig();
 
-<Sequence from={1 * fps} durationInFrames={2 * fps} premountFor={1 * fps}>
-  <Title />
-</Sequence>
-<Sequence from={2 * fps} durationInFrames={2 * fps} premountFor={1 * fps}>
-  <Subtitle />
-</Sequence>
+  return (
+    <>
+      <Sequence from={1 * fps} durationInFrames={2 * fps} premountFor={1 * fps}>
+        <Title />
+      </Sequence>
+      <Sequence from={2 * fps} durationInFrames={2 * fps} premountFor={1 * fps}>
+        <Subtitle />
+      </Sequence>
+    </>
+  );
+};
 ```
 
 This will by default wrap the component in an absolute fill element.  
@@ -99,20 +105,5 @@ Sequences can be nested for complex timing:
   <Sequence from={15} durationInFrames={90} layout="none">
     <Title />
   </Sequence>
-  <Sequence from={45} durationInFrames={60} layout="none">
-    <Subtitle />
-  </Sequence>
 </Sequence>
-```
-
-## Nesting compositions within another
-
-To add a composition within another composition, you can use the `<Sequence>` component with a `width` and `height` prop to specify the size of the composition.
-
-```tsx
-<AbsoluteFill>
-  <Sequence width={COMPOSITION_WIDTH} height={COMPOSITION_HEIGHT}>
-    <CompositionComponent />
-  </Sequence>
-</AbsoluteFill>
 ```
