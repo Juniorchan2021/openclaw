@@ -109,9 +109,7 @@ const { fps } = useVideoConfig();
 return (
   <Video
     src={staticFile("video.mp4")}
-    volume={(f) =>
-      interpolate(f, [0, 1 * fps], [0, 1], { extrapolateRight: "clamp" })
-    }
+    volume={(f) => interpolate(f, [0, 1 * fps], [0, 1], { extrapolateRight: "clamp" })}
   />
 );
 ```
