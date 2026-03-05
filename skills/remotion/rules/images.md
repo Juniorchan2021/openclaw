@@ -127,3 +127,4 @@ const calculateMetadata: CalculateMetadataFunction = async () => {
     height,
   };
 };
+```
