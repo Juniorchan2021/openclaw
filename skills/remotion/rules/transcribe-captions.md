@@ -66,3 +66,5 @@ fs.writeFileSync("captions.json", JSON.stringify(captions, null, 2));
 ```
 
 Transcribe each clip individually and create multiple JSON files.
+
+See [Displaying captions](display-captions.md) for how to display the captions in Remotion.
