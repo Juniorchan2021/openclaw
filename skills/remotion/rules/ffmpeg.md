@@ -1,9 +1,17 @@
 ---
+
+```tsx
+import { staticFile, useVideoConfig } from "remotion";
+```
 name: ffmpeg
 description: Using FFmpeg and FFprobe in Remotion
 metadata:
   tags: ffmpeg, ffprobe, video, trimming
 ---
+
+```tsx
+import { staticFile, useVideoConfig } from "remotion";
+```
 
 ## FFmpeg in Remotion
 
