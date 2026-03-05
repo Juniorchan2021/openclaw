@@ -211,10 +211,9 @@ You can animate the camera along the line by adding a `useEffect` hook that upda
 Unless I ask for it, do not jump between camera angles.
 
 ```tsx
+import { useState } from "react";
 import * as turf from "@turf/turf";
-import { interpolate } from "remotion";
-import { Easing } from "remotion";
-import { useCurrentFrame, useVideoConfig, useDelayRender } from "remotion";
+import { interpolate, Easing, useCurrentFrame, useVideoConfig, useDelayRender } from "remotion";
 
 const animationDuration = 20;
 const cameraAltitude = 4000;
@@ -224,12 +223,12 @@ const cameraAltitude = 4000;
 const frame = useCurrentFrame();
 const { fps } = useVideoConfig();
 const { delayRender, continueRender } = useDelayRender();
+const [handle] = useState(() => delayRender("Moving point..."));
 
 useEffect(() => {
   if (!map) {
     return;
   }
-  const handle = delayRender("Moving point...");
 
   const routeDistance = turf.length(turf.lineString(lineCoordinates));
 
