@@ -270,12 +270,11 @@ To animate a line that appears straight on the map, use linear interpolation bet
 
 ```tsx
 const frame = useCurrentFrame();
-const { durationInFrames } = useVideoConfig();
+const { durationInFrames, delayRender, continueRender } = useVideoConfig();
+const [animationHandle] = useState(() => delayRender("Animating line..."));
 
 useEffect(() => {
   if (!map) return;
-
-  const animationHandle = delayRender("Animating line...");
 
   const progress = interpolate(frame, [0, durationInFrames - 1], [0, 1], {
     extrapolateLeft: "clamp",
@@ -304,7 +303,7 @@ useEffect(() => {
   }
 
   map.once("idle", () => continueRender(animationHandle));
-}, [frame, map, durationInFrames]);
+}, [animationHandle, frame, map, durationInFrames, continueRender]);
 ```
 
 ### Curved lines (geodesic/great circle)
