@@ -57,4 +57,3 @@ const input = new Input({
 });
 
 const durationInSeconds = await input.computeDuration();
-```
