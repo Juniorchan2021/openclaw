@@ -25,3 +25,4 @@ For word highlighting animation (like with a highlighter pen), see the official 
 
 ```
 WebFetch: https://www.remotion.dev/docs/animating-properties#interpolate-colors
+```
