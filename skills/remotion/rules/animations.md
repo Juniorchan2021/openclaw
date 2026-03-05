@@ -24,4 +24,3 @@ export const FadeIn = () => {
 ```
 
 CSS transitions or animations are FORBIDDEN - they will not render correctly.
-Tailwind animation class names are FORBIDDEN - they will not render correctly.
