@@ -1,17 +1,9 @@
 ---
-
-```tsx
-import { staticFile, useVideoConfig } from "remotion";
-```
 name: ffmpeg
 description: Using FFmpeg and FFprobe in Remotion
 metadata:
   tags: ffmpeg, ffprobe, video, trimming
 ---
-
-```tsx
-import { staticFile, useVideoConfig } from "remotion";
-```
 
 ## FFmpeg in Remotion
 
@@ -37,6 +29,9 @@ bunx remotion ffmpeg -ss 00:00:05 -i public/input.mp4 -to 00:00:10 -c:v libx264 
 
 ```tsx
 import { Video } from "@remotion/media";
+import { staticFile, useVideoConfig } from "remotion";
+
+const { fps } = useVideoConfig();
 
 <Video src={staticFile("video.mp4")} trimBefore={5 * fps} trimAfter={10 * fps} />;
 ```
