@@ -176,3 +176,4 @@ const value1 = interpolate(frame, [0, 100], [0, 1], {
   extrapolateLeft: "clamp",
   extrapolateRight: "clamp",
 });
+```
