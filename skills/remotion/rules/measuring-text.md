@@ -137,4 +137,3 @@ return <div style={fontStyle}>Hello</div>;
 
 ```tsx
 <div style={{ outline: "2px solid red" }}>Text</div>
-```
