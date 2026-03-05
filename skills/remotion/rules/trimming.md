@@ -31,7 +31,7 @@ Use `durationInFrames` to unmount content after a specified duration:
 ```tsx
 <Sequence durationInFrames={1.5 * fps}>
   <MyAnimation />
-</Sequence>;
+</Sequence>
 ```
 
 The animation plays for 45 frames, then the component unmounts.
@@ -45,7 +45,7 @@ Nest sequences to both trim the beginning and delay when it appears:
   <Sequence from={-15}>
     <MyAnimation />
   </Sequence>
-</Sequence>;
+</Sequence>
 ```
 
 The inner sequence trims 15 frames from the start, and the outer sequence delays the result by 30 frames.
