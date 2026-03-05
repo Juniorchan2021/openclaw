@@ -106,4 +106,3 @@ Sequences can be nested for complex timing:
     <Title />
   </Sequence>
 </Sequence>
-```
