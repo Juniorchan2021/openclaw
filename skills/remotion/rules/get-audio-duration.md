@@ -55,3 +55,4 @@ const input = new Input({
   formats: ALL_FORMATS,
   source: new FileSource(file), // File object from input or drag-drop
 });
+```
