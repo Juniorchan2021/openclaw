@@ -30,10 +30,7 @@ Use the [`getVideoDuration`](./get-video-duration.md) and [`getVideoDimensions`]
 import { CalculateMetadataFunction } from "remotion";
 import { getVideoDuration } from "./get-video-duration";
 
-const calculateMetadata: CalculateMetadataFunction<Props> = async ({
-  props,
-  fps,
-}) => {
+const calculateMetadata: CalculateMetadataFunction<Props> = async ({ props, fps }) => {
   const durationInSeconds = await getVideoDuration(props.videoSrc);
 
   return {
@@ -51,10 +48,7 @@ import { CalculateMetadataFunction } from "remotion";
 import { getVideoDuration } from "./get-video-duration";
 import { getVideoDimensions } from "./get-video-dimensions";
 
-const calculateMetadata: CalculateMetadataFunction<Props> = async ({
-  props,
-  fps,
-}) => {
+const calculateMetadata: CalculateMetadataFunction<Props> = async ({ props, fps }) => {
   const dimensions = await getVideoDimensions(props.videoSrc);
 
   return {
@@ -67,19 +61,11 @@ const calculateMetadata: CalculateMetadataFunction<Props> = async ({
 ## Setting duration based on multiple videos
 
 ```tsx
-const calculateMetadata: CalculateMetadataFunction<Props> = async ({
-  props,
-  fps,
-}) => {
-  const metadataPromises = props.videos.map((video) =>
-    getVideoDuration(video.src),
-  );
+const calculateMetadata: CalculateMetadataFunction<Props> = async ({ props, fps }) => {
+  const metadataPromises = props.videos.map((video) => getVideoDuration(video.src));
   const allMetadata = await Promise.all(metadataPromises);
 
-  const totalDuration = allMetadata.reduce(
-    (sum, durationInSeconds) => sum + durationInSeconds,
-    0,
-  );
+  const totalDuration = allMetadata.reduce((sum, durationInSeconds) => sum + durationInSeconds, 0);
 
   return {
     durationInFrames: Math.ceil(totalDuration * fps),
@@ -92,10 +78,7 @@ const calculateMetadata: CalculateMetadataFunction<Props> = async ({
 Set the default output filename based on props:
 
 ```tsx
-const calculateMetadata: CalculateMetadataFunction<Props> = async ({
-  props,
-  fps,
-}) => {
+const calculateMetadata: CalculateMetadataFunction<Props> = async ({ props, fps }) => {
   return {
     outName: props.filename,
   };
