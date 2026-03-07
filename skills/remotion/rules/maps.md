@@ -144,7 +144,7 @@ export const MyComposition = () => {
       continueRender(handle);
       setMap(_map);
     });
-  }, [lineCoordinates]);
+  }, [lineCoordinates, handle, continueRender]);
 
   const style: React.CSSProperties = useMemo(
     () => ({ width, height, position: "absolute" }),
@@ -277,10 +277,10 @@ import { useCurrentFrame, interpolate, Easing, useVideoConfig, useDelayRender, u
 const frame = useCurrentFrame();
 const { durationInFrames } = useVideoConfig();
 const { delayRender, continueRender } = useDelayRender();
-const [handle] = useState(() => delayRender("Animating line..."));
 
 useEffect(() => {
   if (!map) return;
+  const handle = delayRender("Animating line...");
 
   const progress = interpolate(frame, [0, durationInFrames - 1], [0, 1], {
     extrapolateLeft: "clamp",
@@ -309,7 +309,7 @@ useEffect(() => {
   }
 
   map.once("idle", () => continueRender(handle));
-}, [frame, map, durationInFrames, handle, continueRender]);
+}, [frame, map, durationInFrames, delayRender, continueRender]);
 ```
 
 ### Curved lines (geodesic/great circle)
