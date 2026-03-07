@@ -5,7 +5,7 @@ metadata:
   tags: map, map animation, mapbox
 ---
 
-Maps can be added to a Remotion video with Mapbox.
+Maps can be added to a Remotion video with Mapbox.  
 The [Mapbox documentation](https://docs.mapbox.com/mapbox-gl-js/api/) has the API reference.
 
 ## Prerequisites
@@ -169,7 +169,7 @@ Unless I request it, do not add additional points to the lines.
 
 ## Map style
 
-By default, use the `mapbox://styles/mapbox/standard` style.
+By default, use the `mapbox://styles/mapbox/standard` style.  
 Hide the labels from the base map style.
 
 Unless I request otherwise, remove all features from the Mapbox Standard style.
@@ -270,7 +270,8 @@ To animate a line that appears straight on the map, use linear interpolation bet
 
 ```tsx
 const frame = useCurrentFrame();
-const { durationInFrames, delayRender, continueRender } = useVideoConfig();
+const { durationInFrames, fps } = useVideoConfig();
+const { delayRender, continueRender } = useDelayRender();
 const [animationHandle] = useState(() => delayRender("Animating line..."));
 
 useEffect(() => {
@@ -303,7 +304,7 @@ useEffect(() => {
   }
 
   map.once("idle", () => continueRender(animationHandle));
-}, [animationHandle, frame, map, durationInFrames, continueRender]);
+}, [frame, map, durationInFrames, animationHandle]);
 ```
 
 ### Curved lines (geodesic/great circle)
