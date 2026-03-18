@@ -1,0 +1,9 @@
+{
+  "api": "openai",
+  "apiKey": "",
+  "model": "gpt-4",
+  "apiEndpoint": "",
+  "maxActions": 10,
+  "maxActionRetries": 3,
+  "defaultTimeout": 30000
+}
